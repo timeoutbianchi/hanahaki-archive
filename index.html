@@ -1222,6 +1222,90 @@ h1::after {
       button.addEventListener("click", () => {
         localStorage.setItem("julienzo-skate-found", "yes");
         updateProgress();
+        
+const noteContents = {
+  allergies: `
+    <h3>cosas a las que Juli es alérgico / no le gustan</h3>
+    <p class="note-subtitle">actualizado por última vez: 14/08/2026</p>
+    <ul>
+      <li>Preguntarle a Juli qué alergias tiene antes de comprarle comida. No confiar en mi memoria para estas cosas.</li>
+      <li>Odia el café frío. Dice que es un crimen contra la humanidad.</li>
+      <li>No le gusta que le saquen comida del plato. Aunque después me roba de la mía.</li>
+      <li>Si está estudiando y dice que no tiene hambre, dejarle algo igual. Después se olvida de comer.</li>
+      <li>Las películas que duran cuatro horas. Se queja, pero si le gustan no se mueve del sillón.</li>
+      <li>Que le cambien los planes a último momento.</li>
+      <li>Que le digan que está exagerando cuando algo le importa.</li>
+      <li>Dato pendiente: confirmar alergias alimentarias. No inventar, por las dudas.</li>
+    </ul>
+  `,
+
+  movies: `
+    <h3>películas y series para ver con Ju / películas y series que ya vimos</h3>
+    <p class="note-subtitle">lista compartida mentalmente. Julián dice que no cuenta como lista si no la escribo.</p>
+
+    <h4>ya vimos · Spider-Man</h4>
+    <ul>
+      <li>Spider-Man (2002)</li>
+      <li>Spider-Man 2 (2004)</li>
+      <li>Spider-Man 3 (2007)</li>
+      <li>The Amazing Spider-Man (2012)</li>
+      <li>The Amazing Spider-Man 2 (2014)</li>
+      <li>Spider-Man: Homecoming (2017)</li>
+      <li>Spider-Man: Into the Spider-Verse (2018)</li>
+      <li>Spider-Man: Far From Home (2019)</li>
+      <li>Spider-Man: No Way Home (2021)</li>
+      <li>Spider-Man: Across the Spider-Verse (2023)</li>
+    </ul>
+
+    <h4>pendientes</h4>
+    <ul>
+      <li>Elegir una película sin que Juli tarde cuarenta minutos en decidir.</li>
+      <li>Volver a ver alguna de Spider-Man porque siempre terminamos discutiendo cuál es la mejor.</li>
+      <li>Una serie corta. En teoría.</li>
+    </ul>
+
+    <p class="note-subtitle">Nota: no incluir Spider-Man: Brand New Day en “ya vimos”; todavía no se estrenó en agosto de 2026.</p>
+  `,
+
+  sleepovers: `
+    <h3>cosas que Ju se olvida en casa cuando se queda a dormir</h3>
+    <p class="note-subtitle">inventario no oficial · departamento de Enzo</p>
+    <ul>
+      <li>Un cargador. Siempre un cargador.</li>
+      <li>Remeras que después dice que no sabe dónde dejó.</li>
+      <li>Apuntes de Medicina. No sé cómo hace para estudiar si deja los apuntes en cualquier lado.</li>
+      <li>Un buzo que lleva meses diciendo que va a buscar.</li>
+      <li>Medias. Sueltas. Sin explicación.</li>
+      <li>El neceser una vez. Después me preguntó si lo había visto como si yo fuera el encargado de objetos perdidos.</li>
+      <li>Los auriculares. Encontrados abajo del sillón.</li>
+      <li>Una botella de agua que sigue en la mesa de luz.</li>
+    </ul>
+
+    <p>Conclusión: si algún día Juli deja de venir, voy a tener que devolverle la mitad de sus cosas.</p>
+  `
+};
+
+const notePage = document.getElementById("note-page");
+const noteContent = document.getElementById("note-content");
+const notesGrid = document.getElementById("notes-grid");
+
+document.querySelectorAll("[data-note]").forEach(folder => {
+  folder.addEventListener("click", () => {
+    const note = noteContents[folder.dataset.note];
+
+    if (!note) return;
+
+    noteContent.innerHTML = note;
+    notesGrid.hidden = true;
+    notePage.hidden = false;
+  });
+});
+
+document.getElementById("note-back").addEventListener("click", () => {
+  notePage.hidden = true;
+  notesGrid.hidden = false;
+});
+
         openSection(button.dataset.scene);
       });
     });
