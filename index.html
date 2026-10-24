@@ -1218,22 +1218,14 @@ h1::after {
       });
     });
 
-    document.querySelectorAll("[data-scene]").forEach(button => {
-      button.addEventListener("click", () => {
-        localStorage.setItem("julienzo-skate-found", "yes");
-        updateProgress();
-        
+   
+document.querySelectorAll("[data-scene]").forEach(button => {
+  button.addEventListener("click", () => {
+    localStorage.setItem("julienzo-skate-found", "yes");
+    updateProgress();
+    openSection(button.dataset.scene);
   });
 });
-
-document.getElementById("note-back").addEventListener("click", () => {
-  notePage.hidden = true;
-  notesGrid.hidden = false;
-});
-
-        openSection(button.dataset.scene);
-      });
-    });
 
     document.querySelectorAll("[data-home]").forEach(button => {
       button.addEventListener("click", goHome);
@@ -1366,6 +1358,7 @@ const notePage = document.getElementById("note-page");
 const noteContent = document.getElementById("note-content");
 const notesGrid = document.getElementById("notes-grid");
 
+
 document.querySelectorAll("[data-note]").forEach(folder => {
   folder.addEventListener("click", () => {
     const note = noteContents[folder.dataset.note];
@@ -1375,8 +1368,15 @@ document.querySelectorAll("[data-note]").forEach(folder => {
     noteContent.innerHTML = note;
     notesGrid.hidden = true;
     notePage.hidden = false;
+  });
+});
+
+document.getElementById("note-back").addEventListener("click", () => {
+  notePage.hidden = true;
+  notesGrid.hidden = false;
+});
+
 updateProgress();
-    updateProgress();
   </script>
 </body>
 </html>
