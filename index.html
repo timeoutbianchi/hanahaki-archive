@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>julienzo archive</title>
+
+  <style>
+    :root {
+      --bg: #17151a;
+      --panel: #262129;
+      --wine: #713449;
+      --pink: #e7bdc9;
+      --cream: #f1e7dd;
+      --muted: #b8aab4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at top left, #452736, transparent 55%),
+        var(--bg);
+      color: var(--cream);
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 28px 20px 18px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--pink);
+      letter-spacing: 4px;
+      font-size: 11px;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: clamp(30px, 6vw, 48px);
+      margin: 14px 0 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    main {
+      width: min(900px, 92%);
+      margin: 20px auto 50px;
+    }
+
+    .welcome, .window {
+      background: rgba(38, 33, 41, .94);
+      border: 1px solid #51404b;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .welcome {
+      text-align: center;
+    }
+
+    .welcome p, .window p {
+      line-height: 1.8;
+    }
+
+    .desktop {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .app {
+      border: 1px solid transparent;
+      border-radius: 12px;
+      background: var(--panel);
+      color: var(--cream);
+      padding: 18px 8px;
+      cursor: pointer;
+      font: inherit;
+      transition: background .2s, transform .2s;
+    }
+
+    .app:hover {
+      background: var(--wine);
+      transform: translateY(-2px);
+    }
+
+    .app:focus-visible, button:focus-visible {
+      outline: 2px solid var(--pink);
+      outline-offset: 3px;
+    }
+
+    .app span {
+      display: block;
+      font-size: 27px;
+      margin-bottom: 10px;
+    }
+
+    .app small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .window {
+      display: none;
+    }
+
+    .window.active {
+      display: block;
+      animation: appear .25s ease;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .window h2 {
+      font-family: Georgia, serif;
+      color: var(--pink);
+      font-weight: normal;
+    }
+
+    .item {
+      background: #342b36;
+      border-radius: 9px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .date {
+      color: var(--pink);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    button.action {
+      background: var(--wine);
+      color: white;
+      border: 1px solid #a36b7e;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 6px 5px 6px 0;
+    }
+
+    button.action:hover {
+      background: #8d435c;
+    }
+
+    .back {
+      background: transparent !important;
+      border-color: #62515d !important;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 15px;
+      font-size: 11px;
+    }
+
+    @media (max-width: 480px) {
+      .desktop {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .welcome, .window {
+        padding: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="eyebrow">PERSONAL FILES · BUENOS AIRES</div>
+    <h1>julienzo archive</h1>
+    <div class="subtitle">
+      a little piece of a story that never really ended
+    </div>
+  </header>
+
+  <main>
+    <section class="welcome" id="home">
+      <div class="date">ENZO'S PERSONAL ARCHIVE</div>
+      <h2>Some things never leave us.</h2>
+      <p>
+        Fotografías, conversaciones y recuerdos que todavía
+        merecen ser contados.
+        </p>
+      <p class="note">Seleccioná una carpeta para explorar.</p>
+
+      <nav class="desktop" aria-label="Archivo personal">
+        <button class="app" data-open="messages">
+          <span>✉</span>Messages
+          <small>conversations</small>
+        </button>
+
+        <button class="app" data-open="gallery">
+          <span>▧</span>Gallery
+          <small>photographs</small>
+        </button>
+
+        <button class="app" data-open="notes">
+          <span>✎</span>Notes
+          <small>unsent words</small>
+        </button>
+
+        <button class="app" data-open="music">
+          <span>♫</span>Music
+          <small>our soundtrack</small>
+        </button>
+
+        <button class="app" data-open="archive">
+          <span>▤</span>Archive
+          <small>extra scenes</small>
+        </button>
+
+        <button class="app" data-open="memories">
+          <span>♡</span>Memories
+          <small id="progress">0 discovered</small>
+        </button>
+      </nav>
+    </section>
+    <div class="item">
+        <strong>Julián</strong>
+        <p>boludo te acordás cuando me enseñaste a andar en skate</p>
+        <p>bueno sigo pensando que fue una pésima decisión</p>
+      </div>
+
+      <div class="item">
+        <strong>Enzo</strong>
+        <p>te caíste solo hermano</p>
+        <p>yo te dije que doblaras</p>
+      </div>
+
+      <button class="action" data-scene="skate">
+        Open related memory
+      </button>
+      <p class="note">Conversación ficticia · Ejemplo inicial</p>
+    </section>
+
+    <section class="window" id="gallery">
+      <div class="date">GALLERY / 2012</div>
+      <h2>IMG_0247.jpg</h2>
+      <div class="item">
+        <p>☀️ &nbsp; Una tarde de verano.</p>
+        <p>
+          Dos chicos, un skate y una historia que recién empezaba.
+        </p>
+      </div>
+      <button class="action" data-scene="skate">
+        Read the memory
+      </button>
+      <p class="note">
+        En la próxima versión, acá podremos mostrar fotografías.
+      </p>
+      <section class="window" id="notes">
+      <div class="date">NOTES / UNTITLED</div>
+      <h2>Cosas que Julián se olvida</h2>
+      <div class="item">
+        <p>— las llaves</p>
+        <p>— comer cuando está estudiando</p>
+        <p>— que no todo se arregla durmiendo cuatro horas</p>
+        <p>— el buzo que me pidió hace tres meses</p>
+      </div>
+      <p class="note">Última edición: hace dos años.</p>
+    </section>
+
+    <section class="window" id="music">
+      <div class="date">MUSIC PLAYER</div>
+      <h2>Our soundtrack</h2>
+      <div class="item">
+        <strong>01. The old days</strong>
+        <p>Canciones de una época que ninguno de los dos olvidó.</p>
+      </div>
+      <div class="item">
+        <strong>02. On repeat</strong>
+        <p>Lo que Enzo escucha últimamente.</p>
+      </div>
+      <p class="note">
+        Próximamente: canciones y escenas relacionadas.
+      </p>
+    </section>
+
+    <section class="window" id="archive">
+      <div class="date">ARCHIVE / EXTR
+        <div class="item">
+        <strong>02. Un martes cualquiera</strong>
+        <p class="note">Una nueva escena, próximamente.</p>
+      </div>
+    </section>
+
+    <section class="window" id="memories">
+      <div class="date">MEMORY LOG</div>
+      <h2>Things you found</h2>
+      <p id="memory-count">Todavía no descubriste ningún recuerdo.</p>
+      <p class="note">
+        Explorá el archivo para encontrar más fragmentos.
+      </p>
+    </section>
+
+    <section class="window" id="skate">
+      <div class="date">EXTRA SCENE / SUMMER</div>
+      <h2>El verano del skate</h2>
+
+      <p>
+        Julián estaba convencido de que aprender a andar en skate
+        iba a ser fácil. Enzo, que lo conocía lo suficiente como
+        para saber cuándo estaba mintiendo, no tuvo el corazón
+        de decírselo.
+      </p>
+
+      <p>
+        Para cuando el sol empezó a bajar, ya habían pasado más
+        tiempo discutiendo sobre cómo doblar que avanzando por
+        la vereda. Julián insistía en que el
+        <p>
+        Enzo se rio, le ofreció una mano y esperó a que volviera
+        a intentarlo. No tenía ningún apuro por irse a casa.
+      </p>
+
+      <p class="note">
+        Escena de prueba · Podemos reemplazarla por tu versión
+        definitiva.
+      </p>
+
+      <button class="action back" data-home>
+        ← Back to desktop
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    JULIENZO ARCHIVE · A FICTIONAL UNIVERSE
+  </footer>
+
+  <script>
+    const windows = document.querySelectorAll(".window");
+    const home = document.getElementById("home");
+
+    function openSection(id) {
+      home.style.display = "none";
+
+      windows.forEach(section => {
+        section.classList.toggle("active", section.id === id);
+      });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goHome() {
+      windows.forEach(section => {
+        section.classList.remove("active");
+      });
+      home.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.querySelectorAll("[data-open]").forEach(button => {
+      button.addEventListener("click", () => {
+        openSection(button.dataset.open);
+      });
+    });
+
+    document.querySelectorAll("[data-scene]").forEach(button => {
+      button.addEventListener("click", () => {
+        localStorage.setItem("julienzo-skate-found", "yes");
+        updateProgress();
+        openSection(button.dataset.scene);
+      });
+    });
+
+    document.querySelectorAll("[data-home]").forEach(button => {
+      button.addEventListener("click", goHome);
+    });
+
+    function updateProgress() {
+      const found =
+        localStorage.getItem("julienzo-skate-found") === "yes";
+
+      document.getElementById("progress").textContent =
+        found ? "1 discovered" : "0 discovered";
+
+      document.getElementById("memory-count").textContent =
+        found
+          ? "✦ Descubriste: El verano del skate."
+        }
+
+    updateProgress();
+  </script>
+</body>
+</html>
