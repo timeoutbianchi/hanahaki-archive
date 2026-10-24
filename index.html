@@ -342,75 +342,128 @@ h1::after {
     <button class="action back" id="photo-back">← Back to gallery</button>
   </div>
 </section>
+    .photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
 
-    <section class="window" id="music">
-      <div class="date">MUSIC PLAYER</div>
-      <h2>Our soundtrack</h2>
-      <div class="item">
-        <strong>01. The old days</strong>
-        <p>Canciones de una época que ninguno de los dos olvidó.</p>
-      </div>
-      <div class="item">
-        <strong>02. On repeat</strong>
-        <p>Lo que Enzo escucha últimamente.</p>
-      </div>
-      <p class="note">
-        Próximamente: canciones y escenas relacionadas.
-      </p>
-    </section>
+.photo-card {
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid #59404B;
+  border-radius: 4px;
+  background: #211D25;
+  color: var(--cream);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: transform .2s, border-color .2s;
+}
 
-    <section class="window" id="archive">
-      <div class="date">ARCHIVE / EXTR
-        <div class="item">
-        <strong>02. Un martes cualquiera</strong>
-        <p class="note">Una nueva escena, próximamente.</p>
-      </div>
-    </section>
+.photo-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--pink);
+}
 
-    <section class="window" id="memories">
-      <div class="date">MEMORY LOG</div>
-      <h2>Things you found</h2>
-      <p id="memory-count">Todavía no descubriste ningún recuerdo.</p>
-      <p class="note">
-        Explorá el archivo para encontrar más fragmentos.
-      </p>
-    </section>
+.photo-placeholder {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  margin-bottom: 10px;
+}
 
-    <section class="window" id="skate">
-      <div class="date">EXTRA SCENE / SUMMER</div>
-      <h2>El verano del skate</h2>
+.summer {
+  background: linear-gradient(145deg, #C4A57B, #6E6755 55%, #3D3540);
+  color: #F2E8D9;
+}
+    .birthday {
+  background: linear-gradient(145deg, #744A5B, #C99E9D);
+  color: #F2E8D9;
+}
 
-      <p>
-        Julián estaba convencido de que aprender a andar en skate
-        iba a ser fácil. Enzo, que lo conocía lo suficiente como
-        para saber cuándo estaba mintiendo, no tuvo el corazón
-        de decírselo.
-      </p>
+.random {
+  background: linear-gradient(145deg, #3B5260, #9EAAA4);
+  color: #F2E8D9;
+}
 
-      <p>
-        Para cuando el sol empezó a bajar, ya habían pasado más
-        tiempo discutiendo sobre cómo doblar que avanzando por
-        la vereda. Julián insistía en que el
-        <p>
-        Enzo se rio, le ofreció una mano y esperó a que volviera
-        a intentarlo. No tenía ningún apuro por irse a casa.
-      </p>
+.blurry {
+  background: linear-gradient(145deg, #A78B79, #5A4658);
+  color: #F2E8D9;
+}
 
-      <p class="note">
-        Escena de prueba · Podemos reemplazarla por tu versión
-        definitiva.
-      </p>
+.photo-name,
+.photo-caption {
+  display: block;
+  overflow-wrap: anywhere;
+}
 
-      <button class="action back" data-home>
-        ← Back to desktop
-      </button>
-    </section>
-  </main>
+.photo-name {
+  font-size: 11px;
+  color: var(--pink);
+  margin-bottom: 5px;
+}
 
-  <footer>
-    JULIENZO ARCHIVE · A FICTIONAL UNIVERSE
-  </footer>
+.photo-caption {
+  font-size: 12px;
+  line-height: 1.5;
+}
 
+@media (max-width: 360px) {
+  .photo-grid {
+    gap: 8px;
+  }
+
+  .photo-card {
+    padding: 5px;
+  }
+}
+
+const photoInfo = {
+  summer: {
+    date: "SUMMER / 2012",
+    title: "IMG_0247.jpg",
+    description: "Julián estaba convencido de que aprender a andar en skate iba a ser fácil. Tengo como veinte fotos de ese día y en casi todas sale haciendo alguna boludez.",
+    memory: true
+  },
+  birthday: {
+    date: "BIRTHDAYS / EVERY YEAR",
+    title: "IMG_1082.jpg",
+    description: "La torta salió torcida y Julián se comió la parte con más chocolate antes de que pudiéramos sacar la foto. No aprendemos más."
+  },
+  random: {
+    date: "CAMERA ROLL / UNKNOWN",
+    title: "IMG_2119.jpg",
+    description: "No me acuerdo por qué saqué una foto de esto. Tampoco me acuerdo qué estaba intentando fotografiar. La dejo acá igual."
+  },
+  blurry: {
+    date: "CAMERA ROLL / 2:13 AM",
+    title: "IMG_3091.jpg",
+    description: "Salió movida porque alguien me empujó justo cuando saqué la foto. Julián dice que fue culpa mía. Obviamente."
+  }
+};
+onst photoDetail = document.getElementById("photo-detail");
+
+document.querySelectorAll("[data-photo]").forEach(card => {
+  card.addEventListener("click", () => {
+    const photo = photoInfo[card.dataset.photo];
+    if (!photo) return;
+
+    document.getElementById("photo-date").textContent = photo.date;
+    document.getElementById("photo-title").textContent = photo.title;
+    document.getElementById("photo-description").textContent = photo.description;
+    document.getElementById("photo-memory").hidden = !photo.memory;
+
+    photoDetail.hidden = false;
+    photoDetail.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+document.getElementById("photo-back").addEventListener("click", () => {
+  photoDetail.hidden = true;
+});
   <script>
     const windows = document.querySelectorAll(".window");
     const home = document.getElementById("home");
