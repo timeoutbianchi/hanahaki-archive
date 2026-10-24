@@ -230,7 +230,86 @@ h1::after {
         transition-duration: .01ms !important;
       }
     }
-  </style>
+  .photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.photo-card {
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid #59404B;
+  border-radius: 4px;
+  background: #211D25;
+  color: var(--cream);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: transform .2s, border-color .2s;
+}
+
+.photo-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--pink);
+}
+
+.photo-placeholder {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.summer {
+  background: linear-gradient(145deg, #C4A57B, #6E6755 55%, #3D3540);
+  color: #F2E8D9;
+}
+
+.birthday {
+  background: linear-gradient(145deg, #744A5B, #C99E9D);
+  color: #F2E8D9;
+}
+
+.random {
+  background: linear-gradient(145deg, #3B5260, #9EAAA4);
+  color: #F2E8D9;
+}
+
+.blurry {
+  background: linear-gradient(145deg, #A78B79, #5A4658);
+  color: #F2E8D9;
+}
+
+.photo-name,
+.photo-caption {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.photo-name {
+  font-size: 11px;
+  color: var(--pink);
+  margin-bottom: 5px;
+}
+
+.photo-caption {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 360px) {
+  .photo-grid {
+    gap: 8px;
+  }
+
+  .photo-card {
+    padding: 5px;
+  }
+}
+  </style> 
 </head>
 
 <body>
@@ -281,18 +360,23 @@ h1::after {
           <span>♡</span>Memories
           <small id="progress">0 discovered</small>
         </button>
-      </nav>
+           </nav>
     </section>
-    <div class="item">
-        <strong>Julián</strong>
-        <p>boludo te acordás cuando me enseñaste a andar en skate</p>
-        <p>bueno sigo pensando que fue una pésima decisión</p>
+
+    <section class="window" id="skate">
+      <div class="date">MEMORY</div>
+      <h2>Ultimo cumpleaños de Enzo</h2>
+
+      <div class="item">
+        <strong>Ju (2025)</strong>
+        <p>Feliz cumpleaños amigo, te amooo</p>
+        <p>salgo de la facu y paso a verte</p>
       </div>
 
       <div class="item">
-        <strong>Enzo</strong>
-        <p>te caíste solo hermano</p>
-        <p>yo te dije que doblaras</p>
+        <strong>Enzo (2025)</strong>
+        <p>gracias hermanitooo</p>
+        <p>dale te espero, traeme chipa</p>
       </div>
 
       <button class="action" data-scene="skate">
@@ -342,128 +426,6 @@ h1::after {
     <button class="action back" id="photo-back">← Back to gallery</button>
   </div>
 </section>
-    .photo-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin: 22px 0;
-}
-
-.photo-card {
-  min-width: 0;
-  padding: 8px;
-  border: 1px solid #59404B;
-  border-radius: 4px;
-  background: #211D25;
-  color: var(--cream);
-  text-align: left;
-  font: inherit;
-  cursor: pointer;
-  transition: transform .2s, border-color .2s;
-}
-
-.photo-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--pink);
-}
-
-.photo-placeholder {
-  aspect-ratio: 4 / 3;
-  display: grid;
-  place-items: center;
-  font-size: 38px;
-  margin-bottom: 10px;
-}
-
-.summer {
-  background: linear-gradient(145deg, #C4A57B, #6E6755 55%, #3D3540);
-  color: #F2E8D9;
-}
-    .birthday {
-  background: linear-gradient(145deg, #744A5B, #C99E9D);
-  color: #F2E8D9;
-}
-
-.random {
-  background: linear-gradient(145deg, #3B5260, #9EAAA4);
-  color: #F2E8D9;
-}
-
-.blurry {
-  background: linear-gradient(145deg, #A78B79, #5A4658);
-  color: #F2E8D9;
-}
-
-.photo-name,
-.photo-caption {
-  display: block;
-  overflow-wrap: anywhere;
-}
-
-.photo-name {
-  font-size: 11px;
-  color: var(--pink);
-  margin-bottom: 5px;
-}
-
-.photo-caption {
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-@media (max-width: 360px) {
-  .photo-grid {
-    gap: 8px;
-  }
-
-  .photo-card {
-    padding: 5px;
-  }
-}
-
-const photoInfo = {
-  summer: {
-    date: "SUMMER / 2012",
-    title: "IMG_0247.jpg",
-    description: "Julián estaba convencido de que aprender a andar en skate iba a ser fácil. Tengo como veinte fotos de ese día y en casi todas sale haciendo alguna boludez.",
-    memory: true
-  },
-  birthday: {
-    date: "BIRTHDAYS / EVERY YEAR",
-    title: "IMG_1082.jpg",
-    description: "La torta salió torcida y Julián se comió la parte con más chocolate antes de que pudiéramos sacar la foto. No aprendemos más."
-  },
-  random: {
-    date: "CAMERA ROLL / UNKNOWN",
-    title: "IMG_2119.jpg",
-    description: "No me acuerdo por qué saqué una foto de esto. Tampoco me acuerdo qué estaba intentando fotografiar. La dejo acá igual."
-  },
-  blurry: {
-    date: "CAMERA ROLL / 2:13 AM",
-    title: "IMG_3091.jpg",
-    description: "Salió movida porque alguien me empujó justo cuando saqué la foto. Julián dice que fue culpa mía. Obviamente."
-  }
-};
-onst photoDetail = document.getElementById("photo-detail");
-
-document.querySelectorAll("[data-photo]").forEach(card => {
-  card.addEventListener("click", () => {
-    const photo = photoInfo[card.dataset.photo];
-    if (!photo) return;
-
-    document.getElementById("photo-date").textContent = photo.date;
-    document.getElementById("photo-title").textContent = photo.title;
-    document.getElementById("photo-description").textContent = photo.description;
-    document.getElementById("photo-memory").hidden = !photo.memory;
-
-    photoDetail.hidden = false;
-    photoDetail.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-});
-
-document.getElementById("photo-back").addEventListener("click", () => {
-  photoDetail.hidden = true;
-});
   <script>
     const windows = document.querySelectorAll(".window");
     const home = document.getElementById("home");
@@ -504,18 +466,68 @@ document.getElementById("photo-back").addEventListener("click", () => {
       button.addEventListener("click", goHome);
     });
 
-    function updateProgress() {
-      const found =
-        localStorage.getItem("julienzo-skate-found") === "yes";
+   
+function updateProgress() {
+  const found =
+    localStorage.getItem("julienzo-skate-found") === "yes";
 
-      document.getElementById("progress").textContent =
-        found ? "1 discovered" : "0 discovered";
+  document.getElementById("progress").textContent =
+    found ? "1 discovered" : "0 discovered";
 
-      document.getElementById("memory-count").textContent =
-        found
-          ? "✦ Descubriste: El verano del skate."
-        }
+  const memoryCount = document.getElementById("memory-count");
 
+  if (memoryCount) {
+    memoryCount.textContent = found
+      ? "✦ Descubriste: El verano del skate."
+      : "Todavía quedan recuerdos por descubrir.";
+  }
+
+const photoInfo = {
+  summer: {
+    date: "SUMMER / 2012",
+    title: "IMG_0247.jpg",
+    description: "Julián estaba convencido de que aprender a andar en skate iba a ser fácil. Tengo como veinte fotos de ese día y en casi todas sale haciendo alguna boludez.",
+    memory: true
+  },
+  birthday: {
+    date: "BIRTHDAYS / EVERY YEAR",
+    title: "IMG_1082.jpg",
+    description: "La torta salió torcida y Julián se comió la parte con más chocolate antes de que pudiéramos sacar la foto. No aprendemos más."
+  },
+  random: {
+    date: "CAMERA ROLL / UNKNOWN",
+    title: "IMG_2119.jpg",
+    description: "No me acuerdo por qué saqué una foto de esto. Tampoco me acuerdo qué estaba intentando fotografiar. La dejo acá igual."
+  },
+  blurry: {
+    date: "CAMERA ROLL / 2:13 AM",
+    title: "IMG_3091.jpg",
+    description: "Salió movida porque alguien me empujó justo cuando saqué la foto. Julián dice que fue culpa mía. Obviamente."
+  }
+};
+
+const photoDetail = document.getElementById("photo-detail");
+
+document.querySelectorAll("[data-photo]").forEach(card => {
+  card.addEventListener("click", () => {
+    const photo = photoInfo[card.dataset.photo];
+    if (!photo) return;
+
+    document.getElementById("photo-date").textContent = photo.date;
+    document.getElementById("photo-title").textContent = photo.title;
+    document.getElementById("photo-description").textContent = photo.description;
+    document.getElementById("photo-memory").hidden = !photo.memory;
+
+    photoDetail.hidden = false;
+    photoDetail.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+document.getElementById("photo-back").addEventListener("click", () => {
+  photoDetail.hidden = true;
+});
+
+}
     updateProgress();
   </script>
 </body>
