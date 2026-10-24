@@ -301,32 +301,47 @@ h1::after {
       <p class="note">Conversación ficticia · Ejemplo inicial</p>
     </section>
 
-    <section class="window" id="gallery">
-      <div class="date">GALLERY / 2012</div>
-      <h2>IMG_0247.jpg</h2>
-      <div class="item">
-        <p>☀️ &nbsp; Una tarde de verano.</p>
-        <p>
-          Dos chicos, un skate y una historia que recién empezaba.
-        </p>
-      </div>
-      <button class="action" data-scene="skate">
-        Read the memory
-      </button>
-      <p class="note">
-        En la próxima versión, acá podremos mostrar fotografías.
-      </p>
-      <section class="window" id="notes">
-      <div class="date">NOTES / UNTITLED</div>
-      <h2>Cosas que Julián se olvida</h2>
-      <div class="item">
-        <p>— las llaves</p>
-        <p>— comer cuando está estudiando</p>
-        <p>— que no todo se arregla durmiendo cuatro horas</p>
-        <p>— el buzo que me pidió hace tres meses</p>
-      </div>
-      <p class="note">Última edición: hace dos años.</p>
-    </section>
+   <section class="window" id="gallery">
+  <div class="date">GALLERY / PERSONAL PHOTOS</div>
+  <h2>Camera Roll</h2>
+  <p class="note">Un montón de fotos que tendría que ordenar. Algún día.</p>
+
+  <div class="photo-grid">
+    <button class="photo-card" data-photo="summer">
+      <div class="photo-placeholder summer">☀</div>
+      <span class="photo-name">IMG_0247.jpg</span>
+      <span class="photo-caption">el verano del skate</span>
+    </button>
+
+    <button class="photo-card" data-photo="birthday">
+      <div class="photo-placeholder birthday">✦</div>
+      <span class="photo-name">IMG_1082.jpg</span>
+      <span class="photo-caption">el cumpleaños de siempre</span>
+    </button>
+
+    <button class="photo-card" data-photo="random">
+      <div class="photo-placeholder random">☁</div>
+      <span class="photo-name">IMG_2119.jpg</span>
+      <span class="photo-caption">no sé por qué saqué esto</span>
+    </button>
+
+    <button class="photo-card" data-photo="blurry">
+      <div class="photo-placeholder blurry">✧</div>
+      <span class="photo-name">IMG_3091.jpg</span>
+      <span class="photo-caption">salió movida, igual sirve</span>
+    </button>
+  </div>
+
+  <div class="item" id="photo-detail" hidden>
+    <div class="date" id="photo-date">PHOTO DETAILS</div>
+    <h3 id="photo-title">Una foto cualquiera</h3>
+    <p id="photo-description"></p>
+    <button class="action" id="photo-memory" data-scene="skate" hidden>
+      Open related memory
+    </button>
+    <button class="action back" id="photo-back">← Back to gallery</button>
+  </div>
+</section>
 
     <section class="window" id="music">
       <div class="date">MUSIC PLAYER</div>
