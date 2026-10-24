@@ -131,11 +131,18 @@ h1::after {
       outline-offset: 3px;
     }
 
-    .app span {
-      display: block;
-      font-size: 27px;
-      margin-bottom: 10px;
-    }
+   .app span {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 12px;
+  color: var(--pink);
+  text-shadow: 0 0 12px #D7A8B522;
+  transition: transform .25s;
+}
+
+.app:hover span {
+  transform: translateY(-2px);
+}
 
     .app small {
       display: block;
