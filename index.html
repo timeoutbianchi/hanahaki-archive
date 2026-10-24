@@ -425,6 +425,82 @@ h1::after {
   display: block;
   margin: 20px auto 0;
 }
+    
+/* NOTES — carpetas privadas de Enzo */
+.notes-intro {
+  color: #c5a7b5;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.note-folder {
+  width: 100%;
+  padding: 18px;
+  text-align: left;
+  color: #fff0f5;
+  background: #2b1d26;
+  border: 1px solid #654054;
+  border-radius: 14px;
+  cursor: pointer;
+  font: inherit;
+  transition: background .2s, transform .2s;
+}
+
+.note-folder:hover {
+  background: #49313e;
+  transform: translateY(-2px);
+}
+
+.note-folder-icon {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 26px;
+}
+
+.note-folder strong {
+  display: block;
+  margin-bottom: 7px;
+  line-height: 1.4;
+}
+
+.note-folder small {
+  color: #d1afbf;
+  line-height: 1.4;
+}
+
+.note-page {
+  margin-top: 18px;
+  padding: 20px;
+  background: #211820;
+  border: 1px solid #654054;
+  border-radius: 14px;
+  line-height: 1.7;
+}
+
+.note-page h3 {
+  margin-top: 0;
+  color: #f5d5e3;
+}
+
+.note-page li {
+  margin-bottom: 9px;
+}
+
+.note-page .note-subtitle {
+  color: #c5a7b5;
+  font-size: 13px;
+}
+
+.note-back {
+  margin-top: 18px;
+}
   </style> 
 </head>
 
@@ -1077,6 +1153,43 @@ h1::after {
   <button class="chat-back" data-home>← Volver al inicio</button>
 </section>
 
+<section class="window" id="notes">
+  <h2>Notes</h2>
+  <p class="notes-intro">
+    private notes · Enzo's phone<br>
+    cosas que no da para mandar por WhatsApp
+  </p>
+
+  <div class="notes-grid" id="notes-grid">
+
+    <button class="note-folder" data-note="allergies">
+      <span class="note-folder-icon">📁</span>
+      <strong>cosas a las que Juli es alérgico / no le gustan</strong>
+      <small>algunas son importantes. otras son para descansarlo.</small>
+    </button>
+
+    <button class="note-folder" data-note="movies">
+      <span class="note-folder-icon">📁</span>
+      <strong>películas y series para ver con Ju / películas y series que ya vimos</strong>
+      <small>lista en constante actualización · elegir algo que no dure cuatro horas</small>
+    </button>
+
+    <button class="note-folder" data-note="sleepovers">
+      <span class="note-folder-icon">📁</span>
+      <strong>cosas que Ju se olvida en casa cuando se queda a dormir</strong>
+      <small>inventario de objetos abandonados por el señor Julián Álvarez</small>
+    </button>
+
+  </div>
+
+  <div class="note-page" id="note-page" hidden>
+    <div id="note-content"></div>
+    <button class="note-back" id="note-back">← Volver a las carpetas</button>
+  </div>
+
+  <button data-home>← Volver al inicio</button>
+</section>
+    
   <script>
     const windows = document.querySelectorAll(".window");
     const home = document.getElementById("home");
