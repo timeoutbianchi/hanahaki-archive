@@ -1189,9 +1189,120 @@ h1::after {
 
   <button data-home>← Volver al inicio</button>
 </section>
+
+<section class="window" id="memories">
+  <div class="window-header">
+    <span>♡ personal archive / memories</span>
+    <span>♡</span>
+  </div>
+
+  <div class="window-content">
+    <p class="eyebrow">CÓRDOBA ↔ BUENOS AIRES</p>
+    <h2 class="section-title">the years between us</h2>
+    <p class="section-description">
+      photographs, little things, and all the years it took to live in the same city.
+    </p>
+
+    <div class="memories-grid">
+
+      <button class="memory-card" data-memory="childhood">
+        <div class="polaroid">
+          <img src="juli%20y%20en%2C%2010%20a%C3%B1os.jpg" alt="Julián y Enzo a los diez años">
+          <span class="polaroid-caption">the beginning</span>
+        </div>
+        <span class="memory-date">AGE 10 · CHILDHOOD</span>
+        <strong>before everything</strong>
+        <small>Cuando todavía no sabían que iban a ser inseparables.</small>
+      </button>
+
+      <button class="memory-card" data-memory="eleven">
+        <div class="polaroid tilted">
+          <img src="juli%20y%20en%2C%2011%20a%C3%B1os.jpg" alt="Julián y Enzo a los once años">
+          <span class="polaroid-caption">my favorite person</span>
+        </div>
+        <span class="memory-date">AGE 11 · CHILDHOOD</span>
+        <strong>same time next year?</strong>
+        <small>Un verano terminaba y ya estaban pensando en el siguiente.</small>
+      </button>
+
+      <button class="memory-card" data-memory="airport1">
+        <div class="polaroid">
+          <img src="despedida%20en%20el%20aeropuerto.jpg" alt="Una despedida en el aeropuerto">
+          <span class="polaroid-caption">call me when you land</span>
+        </div>
+        <span class="memory-date">THE USUAL GOODBYE</span>
+        <strong>see you soon</strong>
+        <small>Una despedida más, hasta las próximas vacaciones.</small>
+      </button>
+
+      <button class="memory-card" data-memory="airport2">
+        <div class="polaroid tilted">
+          <img src="despedida%20en%20el%20aeropuerto%202.jpg" alt="Otra despedida en el aeropuerto">
+          <span class="polaroid-caption">already miss you</span>
+        </div>
+        <span class="memory-date">BUENOS AIRES ↔ CÓRDOBA</span>
+        <strong>one more hug</strong>
+        <small>Nunca se acostumbraban del todo a despedirse.</small>
+      </button>
+
+      <button class="memory-card" data-memory="lake">
+        <div class="polaroid">
+          <img src="lago%20de%20cordoba.jpg" alt="Un recuerdo en el lago de Córdoba">
+          <span class="polaroid-caption">somewhere in Córdoba</span>
+        </div>
+        <span class="memory-date">SUMMER DAYS</span>
+        <strong>just one more day</strong>
+        <small>De esos días que parecían durar para siempre.</small>
+      </button>
+
+      <button class="memory-card" data-memory="lastsummer">
+        <div class="polaroid">
+          <img src="ultimas%20vacaciones%20en%20cba%20%281%29.jpg" alt="Últimas vacaciones en Córdoba, foto uno">
+          <span class="polaroid-caption">our last summer</span>
+        </div>
+        <span class="memory-date">AGE 18 · CÓRDOBA</span>
+        <strong>there's something I need to tell you</strong>
+        <small>El verano en que Julián le contó que se mudaba a Buenos Aires.</small>
+      </button>
+
+      <button class="memory-card" data-memory="lastsummer2">
+        <div class="polaroid tilted">
+          <img src="ultimas%20vacaciones%20en%20cba%20%282%29.jpg" alt="Últimas vacaciones en Córdoba, foto dos">
+          <span class="polaroid-caption">stay a little longer</span>
+        </div>
+        <span class="memory-date">THE LAST SUMMER</span>
+        <strong>not just a visit</strong>
+        <small>Esta vez, volver a Buenos Aires significaba algo diferente.</small>
+      </button>
+
+      <button class="memory-card" data-memory="lastsummer3">
+        <div class="polaroid">
+          <img src="ultimas%20vacaciones%20en%20cba%20%283%29.jpg" alt="Últimas vacaciones en Córdoba, foto tres">
+          <span class="polaroid-caption">one last photograph</span>
+        </div>
+        <span class="memory-date">BEFORE THE MOVE</span>
+        <strong>we'll figure it out</strong>
+        <small>Ninguno sabía todavía cómo iba a cambiar su vida.</small>
+      </button>
+
+      <button class="memory-card" data-memory="firstnight">
+        <div class="polaroid tilted">
+          <img src="primera%20noche%20viviendo%20en%20bs.jpg" alt="La primera noche de Julián en Buenos Aires">
+          <span class="polaroid-caption">finally, nearby</span>
+        </div>
+        <span class="memory-date">AGE 18 · BUENOS AIRES</span>
+        <strong>this time, I'm staying</strong>
+        <small>Por primera vez, no tenían que contar los días hasta volver a verse.</small>
+      </button>
+
+    </div>
+  </div>
+
+  <button data-home>← Volver al inicio</button>
+</section>
     
   <script>
-    const windows = document.querySelectorAll(".window");
+  const windows = document.querySelectorAll(".window");
     const home = document.getElementById("home");
 
     function openSection(id) {
