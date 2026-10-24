@@ -1387,6 +1387,25 @@ document.getElementById("memory-back").addEventListener("click", () => {
   memoryGrid.hidden = false;
   memoryGrid.scrollIntoView({ behavior: "smooth", block: "start" });
 });
+    
+const secretMemoryTrigger = document.getElementById("secret-memory-trigger");
+
+secretMemoryTrigger.addEventListener("click", () => {
+  const memory = memoryStories.firstkiss;
+
+  document.getElementById("memory-detail-image").hidden = true;
+  document.getElementById("memory-detail-date").textContent = memory.date;
+  document.getElementById("memory-detail-title").textContent = memory.title;
+  document.getElementById("memory-detail-story").innerHTML = memory.story;
+
+  document.getElementById("secret-memory-status").textContent = "✦ recuerdo descubierto";
+
+  memoryGrid.hidden = true;
+  document.querySelector(".secret-memory-hint").hidden = true;
+  memoryDetail.hidden = false;
+
+  memoryDetail.scrollIntoView({ behavior: "smooth", block: "start" });
+});
     updateProgress();
     openSection(button.dataset.scene);
   });
