@@ -1326,111 +1326,53 @@ h1::after {
   <button data-home>← Volver al inicio</button>
 </section>
     
-  <script>
-  const windows = document.querySelectorAll(".window");
-    const home = document.getElementById("home");
+  
+<script>
+const windows = document.querySelectorAll(".window");
+const home = document.getElementById("home");
 
-    function openSection(id) {
-      home.style.display = "none";
-
-      windows.forEach(section => {
-        section.classList.toggle("active", section.id === id);
-      });
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function goHome() {
-      windows.forEach(section => {
-        section.classList.remove("active");
-      });
-      home.style.display = "block";
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    document.querySelectorAll("[data-open]").forEach(button => {
-      button.addEventListener("click", () => {
-        openSection(button.dataset.open);
-      });
-    });
-
-   
-document.querySelectorAll("[data-scene]").forEach(button => {
-  button.addEventListener("click", () => {
-    localStorage.setItem("julienzo-skate-found", "yes");
-    
-const memoryGrid = document.querySelector(".memories-grid");
-const memoryDetail = document.getElementById("memory-detail");
-
-document.querySelectorAll("[data-memory]").forEach(card => {
-  card.addEventListener("click", () => {
-    const memory = memoryStories[card.dataset.memory];
-    if (!memory) return;
-
-    const image = card.querySelector("img");
-
-    document.getElementById("memory-detail-image").src = image.src;
-    document.getElementById("memory-detail-image").alt = image.alt;
-    document.getElementById("memory-detail-date").textContent = memory.date;
-    document.getElementById("memory-detail-title").textContent = memory.title;
-    document.getElementById("memory-detail-story").innerHTML = memory.story;
-
-    memoryGrid.hidden = true;
-    memoryDetail.hidden = false;
-
-    memoryDetail.scrollIntoView({ behavior: "smooth", block: "start" });
+function openSection(id) {
+  home.style.display = "none";
+  windows.forEach(section => {
+    section.classList.toggle("active", section.id === id);
   });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function goHome() {
+  windows.forEach(section => section.classList.remove("active"));
+  home.style.display = "block";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll("[data-open]").forEach(button => {
+  button.addEventListener("click", () => openSection(button.dataset.open));
 });
 
-document.getElementById("memory-back").addEventListener("click", () => {
-  memoryDetail.hidden = true;
-  memoryGrid.hidden = false;
-  memoryGrid.scrollIntoView({ behavior: "smooth", block: "start" });
-});
-    
-const secretMemoryTrigger = document.getElementById("secret-memory-trigger");
-
-secretMemoryTrigger.addEventListener("click", () => {
-  const memory = memoryStories.firstkiss;
-
-  document.getElementById("memory-detail-image").hidden = true;
-  document.getElementById("memory-detail-date").textContent = memory.date;
-  document.getElementById("memory-detail-title").textContent = memory.title;
-  document.getElementById("memory-detail-story").innerHTML = memory.story;
-
-  document.getElementById("secret-memory-status").textContent = "✦ recuerdo descubierto";
-
-  memoryGrid.hidden = true;
-  document.querySelector(".secret-memory-hint").hidden = true;
-  memoryDetail.hidden = false;
-
-  memoryDetail.scrollIntoView({ behavior: "smooth", block: "start" });
-});
-    updateProgress();
-    openSection(button.dataset.scene);
-  });
-});
-
-    document.querySelectorAll("[data-home]").forEach(button => {
-      button.addEventListener("click", goHome);
-    });
-
-   
 function updateProgress() {
-  const found =
-    localStorage.getItem("julienzo-skate-found") === "yes";
-
-  document.getElementById("progress").textContent =
-    found ? "1 discovered" : "0 discovered";
+  const found = localStorage.getItem("julienzo-skate-found") === "yes";
+  const progress = document.getElementById("progress");
+  if (progress) progress.textContent = found ? "1 discovered" : "0 discovered";
 
   const memoryCount = document.getElementById("memory-count");
-
-    if (memoryCount) {
+  if (memoryCount) {
     memoryCount.textContent = found
       ? "✦ Descubriste: El cumpleaños de Enzo"
       : "Todavía quedan recuerdos por descubrir.";
   }
 }
+
+document.querySelectorAll("[data-scene]").forEach(button => {
+  button.addEventListener("click", () => {
+    localStorage.setItem("julienzo-skate-found", "yes");
+    updateProgress();
+    openSection(button.dataset.scene);
+  });
+});
+
+document.querySelectorAll("[data-home]").forEach(button => {
+  button.addEventListener("click", goHome);
+});
 
 const photoInfo = {
   birthday: {
@@ -1455,7 +1397,6 @@ const photoInfo = {
   }
 };
 
-
 const photoDetail = document.getElementById("photo-detail");
 
 document.querySelectorAll("[data-photo]").forEach(card => {
@@ -1467,7 +1408,6 @@ document.querySelectorAll("[data-photo]").forEach(card => {
     document.getElementById("photo-title").textContent = photo.title;
     document.getElementById("photo-description").textContent = photo.description;
     document.getElementById("photo-memory").hidden = !photo.memory;
-
     photoDetail.hidden = false;
     photoDetail.scrollIntoView({ behavior: "smooth", block: "start" });
   });
@@ -1476,6 +1416,7 @@ document.querySelectorAll("[data-photo]").forEach(card => {
 document.getElementById("photo-back").addEventListener("click", () => {
   photoDetail.hidden = true;
 });
+
 const noteContents = {
   allergies: `
     <h3>cosas a las que Juli es alérgico / no le gustan</h3>
@@ -1491,11 +1432,9 @@ const noteContents = {
       <li>Dato pendiente: confirmar alergias alimentarias. No inventar, por las dudas.</li>
     </ul>
   `,
-
   movies: `
     <h3>películas y series para ver con Ju / películas y series que ya vimos</h3>
     <p class="note-subtitle">lista compartida mentalmente. Julián dice que no cuenta como lista si no la escribo.</p>
-
     <h4>ya vimos · Spider-Man</h4>
     <ul>
       <li>Spider-Man (2002)</li>
@@ -1509,17 +1448,14 @@ const noteContents = {
       <li>Spider-Man: No Way Home (2021)</li>
       <li>Spider-Man: Across the Spider-Verse (2023)</li>
     </ul>
-
     <h4>pendientes</h4>
     <ul>
       <li>Elegir una película sin que Juli tarde cuarenta minutos en decidir.</li>
       <li>Volver a ver alguna de Spider-Man porque siempre terminamos discutiendo cuál es la mejor.</li>
       <li>Una serie corta. En teoría.</li>
     </ul>
-
     <p class="note-subtitle">Nota: no incluir Spider-Man: Brand New Day en “ya vimos”; todavía no se estrenó en agosto de 2026.</p>
   `,
-
   sleepovers: `
     <h3>cosas que Ju se olvida en casa cuando se queda a dormir</h3>
     <p class="note-subtitle">inventario no oficial · departamento de Enzo</p>
@@ -1533,7 +1469,6 @@ const noteContents = {
       <li>Los auriculares. Encontrados abajo del sillón.</li>
       <li>Una botella de agua que sigue en la mesa de luz.</li>
     </ul>
-
     <p>Conclusión: si algún día Juli deja de venir, voy a tener que devolverle la mitad de sus cosas.</p>
   `
 };
@@ -1548,7 +1483,6 @@ const memoryStories = {
       <p>En algún momento dejaron de ser simplemente dos chicos que se veían en vacaciones. Se convirtieron en la persona que el otro buscaba primero para contar cualquier cosa.</p>
     `
   },
-
   eleven: {
     date: "11 AÑOS · INFANCIA",
     title: "¿el verano que viene también?",
@@ -1558,7 +1492,6 @@ const memoryStories = {
       <p>Para ellos, decir «el verano que viene» era otra forma de prometerse que iban a seguir estando ahí.</p>
     `
   },
-
   airport1: {
     date: "BUENOS AIRES ↔ CÓRDOBA",
     title: "hasta pronto",
@@ -1568,7 +1501,6 @@ const memoryStories = {
       <p>Y aun así, apenas se separaban, los dos empezaban a extrañar al otro.</p>
     `
   },
-
   airport2: {
     date: "OTRA DESPEDIDA",
     title: "un abrazo más",
@@ -1578,7 +1510,6 @@ const memoryStories = {
       <p>Se habían acostumbrado a extrañarse. Eso no significaba que les gustara.</p>
     `
   },
-
   lake: {
     date: "VACACIONES EN CÓRDOBA",
     title: "un día más",
@@ -1588,7 +1519,6 @@ const memoryStories = {
       <p>Pero eran esos momentos los que después volvían a sus conversaciones telefónicas, cuando alguno decía «¿te acordás de aquella vez?» y el otro ya sabía exactamente de qué estaba hablando.</p>
     `
   },
-
   lastsummer: {
     date: "18 AÑOS · ÚLTIMO VERANO EN CÓRDOBA",
     title: "tengo algo que contarte",
@@ -1599,7 +1529,6 @@ const memoryStories = {
       <p>Era lo que habían querido durante años. Y, de pronto, estaba por pasar de verdad.</p>
     `
   },
-
   lastsummer2: {
     date: "EL ÚLTIMO VERANO",
     title: "esta vez es diferente",
@@ -1609,7 +1538,6 @@ const memoryStories = {
       <p>Por primera vez, el próximo encuentro no dependía de las vacaciones.</p>
     `
   },
-
   lastsummer3: {
     date: "ANTES DE LA MUDANZA",
     title: "ya nos vamos a arreglar",
@@ -1619,7 +1547,6 @@ const memoryStories = {
       <p>Después se ocuparían del resto.</p>
     `
   },
-
   firstnight: {
     date: "18 AÑOS · BUENOS AIRES",
     title: "esta vez me quedo",
@@ -1629,7 +1556,6 @@ const memoryStories = {
       <p>Después de tantos años de llamadas, viajes y aeropuertos, podían compartir un martes cualquiera. Y aunque todavía no sabían qué hacer con esa nueva realidad, al menos ya no tenían que extrañarse desde lejos.</p>
     `
   },
-  
   firstkiss: {
     date: "15 AÑOS · INVIERNO EN CÓRDOBA",
     title: "nuestro primer beso",
@@ -1644,17 +1570,60 @@ const memoryStories = {
   }
 };
 
+const memoryGrid = document.querySelector(".memories-grid");
+const memoryDetail = document.getElementById("memory-detail");
+const memoryImage = document.getElementById("memory-detail-image");
+const memoryHint = document.querySelector(".secret-memory-hint");
+
+function showMemory(memory, image) {
+  memoryImage.hidden = !image;
+  if (image) {
+    memoryImage.src = image.src;
+    memoryImage.alt = image.alt;
+  }
+
+  document.getElementById("memory-detail-date").textContent = memory.date;
+  document.getElementById("memory-detail-title").textContent = memory.title;
+  document.getElementById("memory-detail-story").innerHTML = memory.story;
+
+  memoryGrid.hidden = true;
+  if (memoryHint) memoryHint.hidden = true;
+  memoryDetail.hidden = false;
+  memoryDetail.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.querySelectorAll("[data-memory]").forEach(card => {
+  card.addEventListener("click", () => {
+    const memory = memoryStories[card.dataset.memory];
+    if (!memory) return;
+    showMemory(memory, card.querySelector("img"));
+  });
+});
+
+document.getElementById("memory-back").addEventListener("click", () => {
+  memoryDetail.hidden = true;
+  memoryGrid.hidden = false;
+  if (memoryHint) memoryHint.hidden = false;
+  memoryGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+const secretMemoryTrigger = document.getElementById("secret-memory-trigger");
+
+if (secretMemoryTrigger) {
+  secretMemoryTrigger.addEventListener("click", () => {
+    showMemory(memoryStories.firstkiss, null);
+    document.getElementById("secret-memory-status").textContent = "✦ recuerdo descubierto";
+  });
+}
+
 const notePage = document.getElementById("note-page");
 const noteContent = document.getElementById("note-content");
 const notesGrid = document.getElementById("notes-grid");
 
-
 document.querySelectorAll("[data-note]").forEach(folder => {
   folder.addEventListener("click", () => {
     const note = noteContents[folder.dataset.note];
-
     if (!note) return;
-
     noteContent.innerHTML = note;
     notesGrid.hidden = true;
     notePage.hidden = false;
@@ -1667,6 +1636,4 @@ document.getElementById("note-back").addEventListener("click", () => {
 });
 
 updateProgress();
-  </script>
-</body>
-</html>
+</script>
