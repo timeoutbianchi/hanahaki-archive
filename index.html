@@ -79,7 +79,23 @@ h1::after {
     .welcome {
       text-align: center;
     }
+.welcome {
+  position: relative;
+  overflow: hidden;
+}
 
+.welcome::before {
+  content: "PERSONAL COLLECTION  ·  EST. 2012";
+  display: block;
+  width: fit-content;
+  margin: 0 auto 18px;
+  padding: 6px 12px;
+  border: 1px solid #59404B;
+  border-radius: 2px;
+  color: var(--pink);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
     .welcome p, .window p {
       line-height: 1.8;
     }
