@@ -1349,6 +1349,35 @@ h1::after {
 document.querySelectorAll("[data-scene]").forEach(button => {
   button.addEventListener("click", () => {
     localStorage.setItem("julienzo-skate-found", "yes");
+    
+const memoryGrid = document.querySelector(".memories-grid");
+const memoryDetail = document.getElementById("memory-detail");
+
+document.querySelectorAll("[data-memory]").forEach(card => {
+  card.addEventListener("click", () => {
+    const memory = memoryStories[card.dataset.memory];
+    if (!memory) return;
+
+    const image = card.querySelector("img");
+
+    document.getElementById("memory-detail-image").src = image.src;
+    document.getElementById("memory-detail-image").alt = image.alt;
+    document.getElementById("memory-detail-date").textContent = memory.date;
+    document.getElementById("memory-detail-title").textContent = memory.title;
+    document.getElementById("memory-detail-story").innerHTML = memory.story;
+
+    memoryGrid.hidden = true;
+    memoryDetail.hidden = false;
+
+    memoryDetail.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+document.getElementById("memory-back").addEventListener("click", () => {
+  memoryDetail.hidden = true;
+  memoryGrid.hidden = false;
+  memoryGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+});
     updateProgress();
     openSection(button.dataset.scene);
   });
